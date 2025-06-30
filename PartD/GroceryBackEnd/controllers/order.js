@@ -4,7 +4,7 @@ import { OrderModel } from "../models/order.js";
 
 const getAllOrders = async (req, res) => {
     // res.json({ message: "get all orders" });
-    if (!req.user.role=='owner') {
+    if (req.user.role != 'owner') {
         return res.status(403).json({ message: "אין לך הרשאה לגשת למידע זה" });
     }
     try {
@@ -12,7 +12,6 @@ const getAllOrders = async (req, res) => {
         .populate('supplier') // ממלא את שדה הספק
         .populate('items.product');
         res.json(allOrders);
-
     }
     catch (err) {
         res.status(400).json({message: "מצטערים הייתה בעיה בשליפת הנתונים" + err.massage});

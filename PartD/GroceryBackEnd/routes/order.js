@@ -5,7 +5,7 @@ import { getAllOrders, getOrderBySupplier, updateOrderStatus, creatNewOrder } fr
 
 const router = express.Router()
 
-router.get("/", getAllOrders)
+router.get("/",verifyToken, getAllOrders)
 router.get("/supplier",verifyToken , getOrderBySupplier)
 router.put("/updateStatus/:id", updateOrderStatus)
 router.post("/", creatNewOrder)

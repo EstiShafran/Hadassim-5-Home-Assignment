@@ -85,8 +85,9 @@ const loginSupplier = async (req, res) => {
             role,
             id: user._id,
             name
-
         })
+        console.log(token);
+        
     }
     catch (err) {
         return res.status(500).json({ message: err.message })

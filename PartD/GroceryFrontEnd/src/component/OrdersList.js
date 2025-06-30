@@ -15,11 +15,17 @@ const OrdersList = () => {
 
     const fetchAllOrders = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/orders');
+            const response = await fetch('http://localhost:5000/api/orders', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             if (!response.ok) {
-                alert('Error loading orders, please try again later.');
+                alert(' Error loading orders, please try again later.');
                 setLoading(false);
-                return;
+                return
             }
             const data = await response.json();
             setOrders(data);
